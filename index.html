@@ -1,0 +1,125 @@
+<option value="ZIRO">Зірочки</option>
+<option value="KRAP">Краплинки</option>
+<option value="SONE">Сонечко</option>
+<option value="SONY">Соняшник</option>
+<option value="PIZ">Пізнайко</option>
+<option value="CHOM">Чомусики</option>
+<option value="VES">Веселка</option>
+<option value="BDZ">Бджілки</option>
+</select>
+<iframe id="groupFrame"></iframe>
+</div>
+</div>
+
+<!-- РОЗКЛАД -->
+<div id="schedule" class="section">
+<div class="card">
+<h2>Розклад занять</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=1WiA4RmGSrRH29CbrXg14df5JtuYd6TeJ#list"></iframe>
+</div>
+</div>
+
+<!-- ПЕДКОЛЕКТИВ -->
+<div id="collective" class="section">
+<div class="card">
+<h2>Педагогічний колектив</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=1Fwu64LsLkIeybCPFTni-_5DgFPvtBMp7#grid"></iframe>
+</div>
+</div>
+
+<!-- ІНКЛЮЗІЯ -->
+<div id="inclusive" class="section">
+<div class="card">
+<h2>Інклюзивна освіта</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=10Q-sd76LpOaqeMxjuyNNYUhFwHMz3lRK#list"></iframe>
+</div>
+</div>
+
+<!-- СТАТУТ -->
+<div id="statut" class="section">
+<div class="card">
+<h2>Статут</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=1fJZhnr-yTZ5Uecl4jdnkuSEDhleSx0dz#list"></iframe>
+</div>
+</div>
+
+<!-- НАКАЗИ -->
+<div id="orders" class="section">
+<div class="card">
+<h2>Накази</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=1ANR6bzU3viTLAgj2NSY-n6JfDlzs_9mS#list"></iframe>
+</div>
+</div>
+
+<!-- АТЕСТАЦІЯ -->
+<div id="attestation" class="section">
+<div class="card">
+<h2>Атестація педагогів</h2>
+<iframe src="https://drive.google.com/embeddedfolderview?id=1lQD4YsBpRtvemJlvn5xkUHF96TktZL-K#list"></iframe>
+</div>
+</div>
+
+<!-- АДМІН -->
+<div id="admin" class="section">
+<div class="card">
+<h2>Адмін-панель</h2>
+<p>Керування доступом та папками</p>
+</div>
+</div>
+
+<footer>© ЗДО «Садочок Ластівка»</footer>
+
+<!-- LOGIN -->
+<div id="login" class="modal">
+<div class="modal-content">
+<h3>Вхід</h3>
+<input id="loginInput" placeholder="Email або код">
+<button onclick="login()">Увійти</button>
+</div>
+</div>
+
+<script>
+function openTab(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function openLogin(){document.getElementById('login').style.display='flex'}
+
+function login(){
+let v=document.getElementById('loginInput').value;
+if(v==="1980"){
+alert("Вихователь");
+document.getElementById('login').style.display='none';
+}
+else if(v==="lisovectana370@gmail.com"){
+alert("Адмін");
+document.querySelectorAll('.admin').forEach(e=>e.classList.remove('hidden'));
+document.getElementById('login').style.display='none';
+}
+else alert("Невірні дані");
+}
+
+const groups={
+ZIRO:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+KRAP:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+SONE:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+SONY:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+PIZ:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+CHOM:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+VES:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
+BDZ:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ"
+};
+
+function loadGroup(k){
+document.getElementById('groupFrame').src=
+"https://drive.google.com/embeddedfolderview?id="+groups[k]+"#grid";
+}
+loadGroup("ZIRO");
+
+// Додаємо редактор для всіх вкладок
+['home','news','album','groups','schedule','collective','inclusive','statut','orders','attestation'].forEach(addEditor);
+</script>
+
+</body>
+</html>
