@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЗДО «Садочок Ластівка»</title>
 
+<!-- Google Search Console -->
+<meta name="google-site-verification" content="L3aMoZRFZU0pbWwUjJfPDd5h7hcqdM3p3z4dfj7Qqo4" />
+
 <style>
 body{margin:0;font-family:Arial;background:#f4fdf7}
 header{background:#2ecc71;color:#fff;padding:15px;text-align:center;position:relative}
@@ -102,119 +105,3 @@ footer{text-align:center;padding:15px;background:#eee}
 <iframe src="https://drive.google.com/embeddedfolderview?id=1Fwu64LsLkIeybCPFTni-_5DgFPvtBMp7#grid"></iframe>
 </div>
 </div>
-
-<div id="inclusive" class="section">
-<div class="card">
-<h2>Інклюзивна освіта</h2>
-<iframe src="https://drive.google.com/embeddedfolderview?id=10Q-sd76LpOaqeMxjuyNNYUhFwHMz3lRK#list"></iframe>
-</div>
-</div>
-<div id="statut" class="section">
-<div class="card">
-<h2>Статут</h2>
-<iframe src="https://drive.google.com/embeddedfolderview?id=1fJZhnr-yTZ5Uecl4jdnkuSEDhleSx0dz#list"></iframe>
-</div>
-</div>
-
-<div id="orders" class="section">
-<div class="card">
-<h2>Накази</h2>
-<iframe src="https://drive.google.com/embeddedfolderview?id=1ANR6bzU3viTLAgj2NSY-n6JfDlzs_9mS#list"></iframe>
-</div>
-</div>
-
-<div id="attestation" class="section">
-<div class="card">
-<h2>Атестація педагогів</h2>
-<iframe src="https://drive.google.com/embeddedfolderview?id=1lQD4YsBpRtvemJlvn5xkUHF96TktZL-K#list"></iframe>
-</div>
-</div>
-
-<div id="admin" class="section">
-<div class="card">
-<h2>Адмін-панель</h2>
-<p>Керування доступом та папками</p>
-</div>
-</div>
-
-<footer>© ЗДО «Садочок Ластівка»</footer>
-
-<!-- LOGIN -->
-<div id="login" class="modal">
-<div class="modal-content">
-<h3>Вхід</h3>
-<input id="loginInput" placeholder="Email або код">
-<button onclick="login()">Увійти</button>
-</div>
-</div>
-
-<script>
-let isAdmin = false;
-
-function openTab(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-// LOGIN
-function openLogin(){document.getElementById('login').style.display='flex'}
-
-function login(){
-  let v=document.getElementById('loginInput').value;
-  if(v==="1980"){
-    alert("Вихователь");
-    document.getElementById('login').style.display='none';
-    isAdmin = false;
-  } else if(v==="lisovectana370@gmail.com"){
-    alert("Адмін");
-    document.querySelectorAll('.admin').forEach(e=>e.classList.remove('hidden'));
-    document.getElementById('login').style.display='none';
-    isAdmin = true;
-    addEditorsForAdmin();
-  } else alert("Невірні дані");
-}
-
-// GRUPY
-const groups={
-ZIRO:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-KRAP:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-SONE:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-SONY:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-PIZ:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-CHOM:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-VES:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ",
-BDZ:"1K446--IrWQBbFOyNneDr7wFrTr164ZYZ"
-};
-
-function loadGroup(k){
-  document.getElementById('groupFrame').src="https://drive.google.com/embeddedfolderview?id="+groups[k]+"#grid";
-}
-loadGroup("ZIRO");
-
-// Редактор тільки для адміна
-function addEditor(sectionId){
-  const section = document.getElementById(sectionId);
-  const editorDiv = document.createElement('div');
-  const textarea = document.createElement('textarea');
-  textarea.id = sectionId+'Text';
-  textarea.placeholder = "Напиши тут текст...";
-  textarea.value = localStorage.getItem(sectionId) || '';
-  const btn = document.createElement('button');
-  btn.innerText = "Зберегти";
-  btn.className = "saveBtn";
-  btn.onclick = ()=> {
-      localStorage.setItem(sectionId, textarea.value);
-      alert("Текст збережено!");
-  }
-  editorDiv.appendChild(textarea);
-  editorDiv.appendChild(btn);
-  section.appendChild(editorDiv);
-}
-
-function addEditorsForAdmin(){
-  ['home','news','album','groups','schedule','collective','inclusive','statut','orders','attestation'].forEach(addEditor);
-}
-</script>
-
-</body>
-</html>
